@@ -16,12 +16,12 @@
     [super viewDidLoad];
 	
 	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 503);
-	self.portraitSlideOffsetSegment.selectedSegmentIndex = [self indexFromPixels:[SlideNavigationController sharedInstance].portraitSlideOffset];
-	self.landscapeSlideOffsetSegment.selectedSegmentIndex = [self indexFromPixels:[SlideNavigationController sharedInstance].landscapeSlideOffset];
-	self.panGestureSwitch.on = [SlideNavigationController sharedInstance].enableSwipeGesture;
-	self.shadowSwitch.on = [SlideNavigationController sharedInstance].enableShadow;
-	self.limitPanGestureSwitch.on = ([SlideNavigationController sharedInstance].panGestureSideOffset == 0) ? NO : YES;
-	self.slideOutAnimationSwitch.on = ((LeftMenuViewController *)[SlideNavigationController sharedInstance].leftMenu).slideOutAnimationEnabled;
+	self.portraitSlideOffsetSegment.selectedSegmentIndex = [self indexFromPixels:self.slideNavigationController.portraitSlideOffset];
+	self.landscapeSlideOffsetSegment.selectedSegmentIndex = [self indexFromPixels:self.slideNavigationController.landscapeSlideOffset];
+	self.panGestureSwitch.on = self.slideNavigationController.enableSwipeGesture;
+	self.shadowSwitch.on = self.slideNavigationController.enableShadow;
+	self.limitPanGestureSwitch.on = (self.slideNavigationController.panGestureSideOffset == 0) ? NO : YES;
+	self.slideOutAnimationSwitch.on = ((LeftMenuViewController *)self.slideNavigationController.leftMenu).slideOutAnimationEnabled;
 }
 
 #pragma mark - SlideNavigationController Methods -
@@ -42,44 +42,44 @@
 {
 	static Menu menu = MenuLeft;
 	
-	[[SlideNavigationController sharedInstance] bounceMenu:menu withCompletion:nil];
+	[self.slideNavigationController bounceMenu:menu withCompletion:nil];
 	
 	menu = (menu == MenuLeft) ? MenuRight : MenuLeft;
 }
 
 - (IBAction)slideOutAnimationSwitchChanged:(UISwitch *)sender
 {
-	((LeftMenuViewController *)[SlideNavigationController sharedInstance].leftMenu).slideOutAnimationEnabled = sender.isOn;
+	((LeftMenuViewController *)self.slideNavigationController.leftMenu).slideOutAnimationEnabled = sender.isOn;
 }
 
 - (IBAction)limitPanGestureSwitchChanged:(UISwitch *)sender
 {
-	[SlideNavigationController sharedInstance].panGestureSideOffset = (sender.isOn) ? 50 : 0;
+	self.slideNavigationController.panGestureSideOffset = (sender.isOn) ? 50 : 0;
 }
 
 - (IBAction)changeAnimationSelected:(id)sender
 {
-	[[SlideNavigationController sharedInstance] openMenu:MenuRight withCompletion:nil];
+	[self.slideNavigationController openMenu:MenuRight withCompletion:nil];
 }
 
 - (IBAction)shadowSwitchSelected:(UISwitch *)sender
 {
-	[SlideNavigationController sharedInstance].enableShadow = sender.isOn;
+	self.slideNavigationController.enableShadow = sender.isOn;
 }
 
 - (IBAction)enablePanGestureSelected:(UISwitch *)sender
 {
-	[SlideNavigationController sharedInstance].enableSwipeGesture = sender.isOn;
+	self.slideNavigationController.enableSwipeGesture = sender.isOn;
 }
 
 - (IBAction)portraitSlideOffsetChanged:(UISegmentedControl *)sender
 {
-	[SlideNavigationController sharedInstance].portraitSlideOffset = [self pixelsFromIndex:sender.selectedSegmentIndex];
+	self.slideNavigationController.portraitSlideOffset = [self pixelsFromIndex:sender.selectedSegmentIndex];
 }
 
 - (IBAction)landscapeSlideOffsetChanged:(UISegmentedControl *)sender
 {
-	[SlideNavigationController sharedInstance].landscapeSlideOffset = [self pixelsFromIndex:sender.selectedSegmentIndex];
+	self.slideNavigationController.landscapeSlideOffset = [self pixelsFromIndex:sender.selectedSegmentIndex];
 }
 
 #pragma mark - Helpers -

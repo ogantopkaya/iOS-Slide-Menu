@@ -55,8 +55,8 @@
 - (void)prepareMenuForAnimation:(Menu)menu
 {
 	UIViewController *menuViewController = (menu == MenuLeft)
-        ? [SlideNavigationController sharedInstance].leftMenu
-        : [SlideNavigationController sharedInstance].rightMenu;
+        ? self.navigationController.leftMenu
+        : self.navigationController.rightMenu;
 	
 	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 	CGRect rect = menuViewController.view.frame;
@@ -97,8 +97,8 @@
 - (void)animateMenu:(Menu)menu withProgress:(CGFloat)progress
 {
     UIViewController *menuViewController = (menu == MenuLeft)
-        ? [SlideNavigationController sharedInstance].leftMenu
-        : [SlideNavigationController sharedInstance].rightMenu;
+        ? self.navigationController.leftMenu
+        : self.navigationController.rightMenu;
     
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     
@@ -144,8 +144,8 @@
 - (void)clearMenu:(Menu)menu
 {
     UIViewController *menuViewController = (menu == MenuLeft)
-    ? [SlideNavigationController sharedInstance].leftMenu
-    : [SlideNavigationController sharedInstance].rightMenu;
+    ? self.navigationController.leftMenu
+    : self.navigationController.rightMenu;
     
 	UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 	

@@ -58,6 +58,13 @@
 	return self;
 }
 
+-(void)setNavigationController:(SlideNavigationController *)navigationController{
+    _navigationController = navigationController;
+    
+    self.fadeAnimation.navigationController = _navigationController;
+    self.scaleAnimation.navigationController = _navigationController;
+}
+
 #pragma mark - SlideNavigationContorllerAnimation Methods -
 
 - (void)prepareMenuForAnimation:(Menu)menu

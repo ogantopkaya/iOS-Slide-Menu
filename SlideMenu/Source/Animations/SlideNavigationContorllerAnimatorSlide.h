@@ -30,6 +30,7 @@
 
 @interface SlideNavigationContorllerAnimatorSlide : NSObject <SlideNavigationContorllerAnimator>
 
+@property (nonatomic, strong) SlideNavigationController *navigationController;
 @property (nonatomic, assign) CGFloat slideMovement;
 
 - (id)initWithSlideMovement:(CGFloat)slideMovement;

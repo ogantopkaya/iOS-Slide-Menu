@@ -30,6 +30,7 @@
 
 @interface SlideNavigationContorllerAnimatorScale : NSObject <SlideNavigationContorllerAnimator>
 
+@property (nonatomic, strong) SlideNavigationController *navigationController;
 @property (nonatomic, assign) CGFloat minimumScale;
 
 - (id)initWithMinimumScale:(CGFloat)minimumScale;

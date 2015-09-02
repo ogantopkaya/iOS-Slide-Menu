@@ -20,17 +20,21 @@
 	
 	RightMenuViewController *rightMenu = (RightMenuViewController*)[mainStoryboard
 														   instantiateViewControllerWithIdentifier: @"RightMenuViewController"];
-	
-	[SlideNavigationController sharedInstance].rightMenu = rightMenu;
-	[SlideNavigationController sharedInstance].leftMenu = leftMenu;
-	[SlideNavigationController sharedInstance].menuRevealAnimationDuration = .18;
+    
+    
+    
+    SlideNavigationController *navigationController =  (SlideNavigationController *)self.window.rootViewController;
+    
+	navigationController.rightMenu = rightMenu;
+	navigationController.leftMenu = leftMenu;
+	navigationController.menuRevealAnimationDuration = .18;
 	
 	// Creating a custom bar button for right menu
 	UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
 	[button setImage:[UIImage imageNamed:@"gear"] forState:UIControlStateNormal];
-	[button addTarget:[SlideNavigationController sharedInstance] action:@selector(toggleRightMenu) forControlEvents:UIControlEventTouchUpInside];
+	[button addTarget:navigationController action:@selector(toggleRightMenu) forControlEvents:UIControlEventTouchUpInside];
 	UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-	[SlideNavigationController sharedInstance].rightBarButtonItem = rightBarButtonItem;
+	navigationController.rightBarButtonItem = rightBarButtonItem;
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidClose object:nil queue:nil usingBlock:^(NSNotification *note) {
         NSString *menu = note.userInfo[@"menu"];

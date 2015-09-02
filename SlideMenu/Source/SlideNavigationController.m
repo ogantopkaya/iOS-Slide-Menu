@@ -33,6 +33,15 @@ typedef enum {
 	PopTypeRoot
 } PopType;
 
+@implementation UIViewController (SlideNavigationController)
+
+-(nullable SlideNavigationController *)slideNavigationController{
+    return [self.navigationController isKindOfClass:[SlideNavigationController class]] ?
+    self.navigationController : nil;
+}
+
+@end
+
 @interface SlideNavigationController() <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UITapGestureRecognizer *tapRecognizer;
 @property (nonatomic, strong) UIPanGestureRecognizer *panRecognizer;
@@ -60,17 +69,7 @@ NSString  *const SlideNavigationControllerDidReveal = @"SlideNavigationControlle
 #define NOTIFICATION_USER_INFO_MENU_RIGHT @"right"
 #define NOTIFICATION_USER_INFO_MENU @"menu"
 
-static SlideNavigationController *singletonInstance;
-
 #pragma mark - Initialization -
-
-+ (SlideNavigationController *)sharedInstance
-{
-	if (!singletonInstance)
-		NSLog(@"SlideNavigationController has not been initialized. Either place one in your storyboard or initialize one in code");
-	
-	return singletonInstance;
-}
 
 - (id)init
 {
@@ -113,12 +112,7 @@ static SlideNavigationController *singletonInstance;
 }
 
 - (void)setup
-{
-	if (singletonInstance)
-		NSLog(@"Singleton instance already exists. You can only instantiate one instance of SlideNavigationController. This could cause major issues");
-	
-	singletonInstance = self;
-	
+{	
 	self.menuRevealAnimationDuration = MENU_SLIDE_ANIMATION_DURATION;
 	self.menuRevealAnimationOption = MENU_SLIDE_ANIMATION_OPTION;
 	self.landscapeSlideOffset = MENU_DEFAULT_SLIDE_OFFSET;
@@ -883,3 +877,4 @@ static SlideNavigationController *singletonInstance;
 }
 
 @end
+

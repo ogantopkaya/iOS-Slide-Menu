@@ -63,8 +63,8 @@
 - (void)prepareMenuForAnimation:(Menu)menu
 {
 	UIViewController *menuViewController = (menu == MenuLeft)
-		? [SlideNavigationController sharedInstance].leftMenu
-		: [SlideNavigationController sharedInstance].rightMenu;
+		? self.navigationController.leftMenu
+		: self.navigationController.rightMenu;
 	
 	self.fadeAnimationView.alpha = self.maximumFadeAlpha;
 	self.fadeAnimationView.frame = menuViewController.view.bounds;
@@ -73,8 +73,8 @@
 - (void)animateMenu:(Menu)menu withProgress:(CGFloat)progress
 {
 	UIViewController *menuViewController = (menu == MenuLeft)
-		? [SlideNavigationController sharedInstance].leftMenu
-		: [SlideNavigationController sharedInstance].rightMenu;
+		? self.navigationController.leftMenu
+		: self.navigationController.rightMenu;
 	
 	self.fadeAnimationView.frame = menuViewController.view.bounds;
 	[menuViewController.view addSubview:self.fadeAnimationView];

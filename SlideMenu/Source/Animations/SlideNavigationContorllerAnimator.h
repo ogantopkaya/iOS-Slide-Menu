@@ -30,6 +30,8 @@
 
 @protocol SlideNavigationContorllerAnimator <NSObject>
 
+@property (nonatomic, strong) SlideNavigationController *navigationController;
+
 // Initial state of the view before animation starts
 // This gets called right before the menu is about to reveal
 - (void)prepareMenuForAnimation:(Menu)menu;

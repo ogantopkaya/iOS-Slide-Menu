@@ -83,6 +83,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    SlideNavigationController *slideNavigationController = (SlideNavigationController *)[self.view.window rootViewController];
+
 	UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone"
 															 bundle: nil];
 	
@@ -104,12 +106,12 @@
 			
 		case 3:
 			[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-			[[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
+			[slideNavigationController popToRootViewControllerAnimated:YES];
 			return;
 			break;
 	}
 	
-	[[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
+	[slideNavigationController popToRootAndSwitchToViewController:vc
 															 withSlideOutAnimation:self.slideOutAnimationEnabled
 																	 andCompletion:nil];
 }

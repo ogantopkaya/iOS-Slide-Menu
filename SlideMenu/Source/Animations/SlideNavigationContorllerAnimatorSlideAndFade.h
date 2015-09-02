@@ -30,6 +30,7 @@
 
 @interface SlideNavigationContorllerAnimatorSlideAndFade : NSObject <SlideNavigationContorllerAnimator>
 
+@property (nonatomic, strong) SlideNavigationController *navigationController;
 - (id)initWithMaximumFadeAlpha:(CGFloat)maximumFadeAlpha fadeColor:(UIColor *)fadeColor andSlideMovement:(CGFloat)slideMovement;
 
 @end

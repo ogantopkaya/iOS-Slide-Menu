@@ -55,8 +55,8 @@
 - (void)prepareMenuForAnimation:(Menu)menu
 {
 	UIViewController *menuViewController = (menu == MenuLeft)
-		? [SlideNavigationController sharedInstance].leftMenu
-		: [SlideNavigationController sharedInstance].rightMenu;
+		? self.navigationController.leftMenu
+		: self.navigationController.rightMenu;
 	
 	menuViewController.view.transform = CGAffineTransformScale(menuViewController.view.transform, self.minimumScale, self.minimumScale);
 }
@@ -64,17 +64,17 @@
 - (void)animateMenu:(Menu)menu withProgress:(CGFloat)progress
 {
 	UIViewController *menuViewController = (menu == MenuLeft)
-		? [SlideNavigationController sharedInstance].leftMenu
-		: [SlideNavigationController sharedInstance].rightMenu;
+		? self.navigationController.leftMenu
+		: self.navigationController.rightMenu;
 	
 	CGFloat scale = MIN(1, (1-self.minimumScale) *progress + self.minimumScale);
-	menuViewController.view.transform = CGAffineTransformScale([SlideNavigationController sharedInstance].view.transform, scale, scale);
+	menuViewController.view.transform = CGAffineTransformScale(self.navigationController.view.transform, scale, scale);
 }
 
 - (void)clear
 {
-	[SlideNavigationController sharedInstance].leftMenu.view.transform = CGAffineTransformScale([SlideNavigationController sharedInstance].view.transform, 1, 1);
-	[SlideNavigationController sharedInstance].rightMenu.view.transform = CGAffineTransformScale([SlideNavigationController sharedInstance].view.transform, 1, 1);
+	self.navigationController.leftMenu.view.transform = CGAffineTransformScale(self.navigationController.view.transform, 1, 1);
+	self.navigationController.rightMenu.view.transform = CGAffineTransformScale(self.navigationController.view.transform, 1, 1);
 }
 
 @end
